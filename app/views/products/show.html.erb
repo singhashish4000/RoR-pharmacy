@@ -1,0 +1,63 @@
+<div style='padding:20px'>
+  <h3 style='color:#1E61A5;font-weight:bold'><%= @product.active_ingredient.name %>
+  (<% @all_names.each do |name| %>
+     <%= name.name %>,
+  <% end %>)
+  </h3>
+  <br>
+  <h4 style='color:#1E61A5;font-weight:bold'><%= @product.category.name %></h4>
+    <div style='border:1px solid #ccc;height:40px;padding:10px'>
+      <b><%= @product.category.name %></b> is the active ingredient of the following trade name medications: 
+    </div>
+    <table class="table table-bordered" style='border:1px solid #ccc;width:100%'>
+      <thead style='background-color:#1e61a5;color:white'>
+        <tr>
+          <th>Active Ingredient</th>
+          <th>Drug Category</th>
+          <th>Trade Name</th>
+        </tr>
+      </thead>
+      <tbody>
+      <td rowspan='4'><%= @product.active_ingredient.name %></td>
+      <td rowspan='4'><%= @product.category.name %></td>
+              <% @all_names.each do |name| %>
+                   <tr>
+                     <td><%= name.name %></td>
+                    </tr>
+                <% end %>                  
+
+        </tbody>
+    </table>
+
+    <br>
+
+    <table class="table table-bordered" style='border:1px solid #ccc;width:100%'>
+    <thead style='background-color:#1e61a5;color:white'>
+      <tr>
+        <th>Product Description</th>
+        <th>Quantity</th>
+        <th>Web Price</th>
+        <th>Phone-in Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @product_desc.each do |product_desc|%>
+      <tr>
+      <% @middileware = Middleware.where(product_description_id: product_desc)  %>
+        <% @span = @middileware.count + 1 %>
+        <td rowspan=<%= @span%>><%= product_desc.desc %></td>   
+        <tr><% @middileware.each do |m| %>
+            <td><%= m.quantity %></td>
+            <td><%= m.web_price %></td>
+            <td><%= m.phone_price %></td>
+            <td>Add to cart</td>
+        </tr><% end %>
+    </tr>  
+    <% end %>
+      </tbody>
+  </table>
+ </div> 
+ <div style='position:relative;bottom:-135px'>
+  <%= render partial: "layouts/partials/footer" %>
+</div>

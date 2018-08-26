@@ -1,0 +1,41 @@
+<%= form_for(@middleware) do |f| %>
+  <% if @middleware.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@middleware.errors.count, "error") %> prohibited this middleware from being saved:</h2>
+
+      <ul>
+      <% @middleware.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product_id %><br>
+    <%= f.collection_select :product_id, Product.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.text_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :web_price %><br>
+    <%= f.text_field :web_price %>
+  </div>
+  <div class="field">
+    <%= f.label :web_price_desc %><br>
+    <%= f.text_field :web_price_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_price %><br>
+    <%= f.text_field :phone_price %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_price_desc %><br>
+    <%= f.text_field :phone_price_desc %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

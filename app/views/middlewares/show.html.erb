@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @middleware.product.name %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @middleware.quantity %>
+</p>
+
+<p>
+  <strong>Web price:</strong>
+  <%= @middleware.web_price %>
+</p>
+
+<p>
+  <strong>Web price desc:</strong>
+  <%= @middleware.web_price_desc %>
+</p>
+
+<p>
+  <strong>Phone price:</strong>
+  <%= @middleware.phone_price %>
+</p>
+
+<p>
+  <strong>Phone price desc:</strong>
+  <%= @middleware.phone_price_desc %>
+</p>
+
+<%= link_to 'Edit', edit_middleware_path(@middleware) %> |
+<%= link_to 'Back', middlewares_path %>

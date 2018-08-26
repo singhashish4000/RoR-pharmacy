@@ -1,0 +1,56 @@
+<h4 style='color:black;font-weight:bold'>Search by first letter:</h4>
+<div style='border:1px solid #1E61A5;background-color:#EDEDEE;color:#1E61A5;height:50px;border-radius:20px;display:inline-block;padding:10px;font-weight:bold;word-spacing:4px'>
+        <u>
+        <a href='#'>A</a>
+        <a href='#'>B</a>
+        <a href='#'>C</a>
+        <a href='#'>D</a>
+        <a href='#'>E</a>
+        <a href='#'>F</a>
+        <a href='#'>G</a>
+        <a href='#'>H</a>
+        <a href='#'>I</a>
+        <a href='#'>J</a>
+        <a href='#'>K</a>
+        <a href='#'>L</a>
+        <a href='#'>M</a>
+        <a href='#'>N</a>
+        <a href='#'>O</a>
+        <a href='#'>P</a>
+        <a href='#'>Q</a>
+        <a href='#'>R</a>
+        <a href='#'>S</a>
+        <a href='#'>T</a>
+        <a href='#'>U</a>
+        <a href='#'>V</a>
+        <a href='#'>W</a>
+        <a href='#'>X</a>
+        <a href='#'>Y</a>
+        <a href='#'>Z</a></u>
+        </div>
+        <br><br>
+        <h4 style='color:black;font-weight:bold'>Search by product category:</h4>
+        <div style='border:1px solid #1E61A5;background-color:#EDEDEE;color:#1E61A5;height:400px;border-radius:20px;padding:10px;font-weight:bold;word-spacing:4px;width:95%'>
+            <div class='col-1' style='width:30%;float:left'>
+                <ul>
+                    <% @category_col_one.each do |category| %>
+                        <li><%= link_to category.name, category %></li>
+                    <% end %> 
+                </ul>    
+            </div>
+            <div class='col-2' style='width:30%;float:left'>
+                <ul>
+                   <% @category_col_two.each do |category| %>
+                      <li><%= link_to category.name, category %></li>
+                   <% end %> 
+                </ul>    
+            </div>
+            <div class='col-3' style='width:35%;float:left' >
+              <ul>
+                <% @category_col_three.each do |category| %>
+                    <li><%= link_to category.name, category %></li>
+            <% end %> 
+            </ul>            
+            </div>
+        </div>
+ 

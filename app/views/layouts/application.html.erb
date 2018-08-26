@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AimsPharmacy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div style='border:1px solid #1E61A5;width:56.5%;height:1500px;margin:auto;border-radius:30px;margin-top:5px;margin-bottom:10px;background-color:white'>
+    <%= render partial: "layouts/partials/header" %>
+    <div style='background-color:#387FC3;height:12px;'>
+    </div>
+    <div style='background-color:#1E61A5;height:38px;'>
+      <div style='color:#FFB08D;font-weight:bold;padding:7px;margin-left:10px;float:left'>
+        <span >Home</span>
+      </div>
+      <div style='color:#FFB08D;padding:4px;float:right;width:30%'>
+        <input type='text' placeholder='Search Products'>
+        <button type="button" class="btn btn-default btn-sm">Go!</button>
+      </div>
+    </div>
+    <div style='height:1290px'>
+     <div style='width:70%;height:985px;float:left'>
+        <%= yield %>
+    </div>
+    <div style='width:30%;height:1287px;border-radius:0px 0px 27px 0px;background-color:#C5F6C0;color:#2465B9;float:left;'>
+    <%= render partial: "layouts/partials/sidebar" %>
+  </div>  
+</body>
+</html>
