@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: aimsPharmacy_production
-  username: aimsPharmacy
+  database: aimspharmacy_production
+  username: aimspharmacy
   password: <%= ENV['AIMSPHARMACY_DATABASE_PASSWORD'] %>
