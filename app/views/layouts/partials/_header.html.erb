@@ -17,17 +17,26 @@ Order Toll Free: 001 888 848 1945 . You save an additional 20% by ordering onlin
     </div>  
   </div>
   <div style='width:30%;height:140px;background-color:#C5F6C0;float:right'>
-    <span style='font-weight:bold;margin-left:5px;margin-bottom:5px'>Welcome! Log in</span> <br>
-      <div class='row' style='padding:8px'>
-        <div class="col-sm-9" style='margin-bottom:5px'><input type='text' placeholder='User name'></div>
-        <div class="col-sm-8" style='margin-bottom:5px'><input type='password' placeholder='Password'></div>
-          <div class="col-sm-4" style='position:relative;left:15px'>
-            <button type="button" class="btn btn-default btn-sm">Go!</button>
-          </div> 
-          <div class="col-sm-12">
-            <span class='text-primary' style='font-weight:bold'><u>Forget Password?</u></span><br>
-            <span class='text-primary small' style='font-weight:bold'><u>Do I need an account to order?</u></span>
-          </div>
+  <div class='row' style='padding:25px;padding-top:5px'>
+    <% if current_user %>
+          <span style='font-weight:bold;margin-bottom:10px;'>Welcome <%= current_user.first_name + " " + current_user.last_name %></span> <br><br>
+          Username : <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.first_name + " "+ current_user.last_name, length: 25)).html_safe,edit_user_registration_path, title: 'Edit Profile' 
+          %><br>
+          Email : <%=  current_user.email %>
+        <br>
+        <%= link_to('View Profile', user_session_path, class: 'btn btn-xs btn-primary',
+                                                          title: 'Profile') %>           
+        <%= link_to('Edit Profile', edit_user_registration_path, class: 'btn btn-xs btn-success',title: 'Edit Profile') %>                  
+        <%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger',
+        title: 'Logout',method: :delete) %>                                                                                       
+    <% else %>                         
+          <br><u>                          
+          <%= link_to('Log In', new_user_session_path, class: 'text text-primary', title: 'Log In') %> /  <%= link_to('Register', new_user_registration_path, class: 'text text-primary', title: 'Register') %></u><br><br>
+          <span class='text-primary small' style='font-weight:bold'><u>Forget Password?</u></span><br>
+          <span class='text-primary small' style='font-weight:bold'><u>Do I need an account to order?</u></span>
+    <% end %>
         </div>
   </div>
 </div>
+
+

@@ -12,6 +12,11 @@ Title.create(name: 'Miss.')
 Title.create(name: 'Ms.')
 Title.create(name: 'Dr.')
 
+Country.create(name: 'Inida')
+Country.create(name: 'USA')
+Country.create(name: 'UK')
+Country.create(name: 'China')
+Country.create(name: 'Japan')
 
 Category.create(name: 'Narcotics')
 Category.create(name: 'Depressants')
