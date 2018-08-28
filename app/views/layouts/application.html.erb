@@ -22,6 +22,21 @@
     </div>
     <div style='height:1290px'>
      <div style='width:70%;height:985px;float:left'>
+     <div style='padding:10px'> 
+        <% flash.each do |key, value| %>
+          <div class="alert alert-dismissable alert-info">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <% if value.class == Array %>
+                  <% value.each do |message| %>  
+                      <%= message %>
+                      </br>
+                  <% end %>
+              <% else %>
+                  <%= value %>
+              <% end %>
+          </div>
+        <% end %>
+      </div>  
         <%= yield %>
     </div>
     <div style='width:30%;height:1287px;border-radius:0px 0px 27px 0px;background-color:#C5F6C0;color:#2465B9;float:left;'>
