@@ -1,5 +1,5 @@
 class RemoveMiddlewaresFromProductDescriptions < ActiveRecord::Migration
   def change
-    remove_reference :product_descriptions, :middlewaress, index: true, foreign_key: true
+    remove_column :product_descriptions, :middlewares_id 
   end
 end
