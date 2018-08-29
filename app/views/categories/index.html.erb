@@ -1,0 +1,41 @@
+<div style='padding:20px'>
+<% if current_user.nil? || current_user && !current_user.is_admin? %>
+      <h3 style='color:#1E61A5;font-weight:bold'>Browse Drugs</h3><br>
+      <input type='text'>
+      <input type='button' value='Search'><br>
+    <br>
+        <%= render partial: "layouts/partials/category_search" %>
+    </div>
+    <div style='position:relative;bottom:-460px'>
+      <%= render partial: "layouts/partials/footer" %>
+<% elsif current_user && current_user.is_admin %> 
+<div style='float:left' ,class='col-md-8'>
+  <h2>All Category</h2>
+</div>  
+<span style='float:right;margin-left:5px;font-weight:bold;margin-top:30px', class=''>
+  <u><%= link_to ' New Category', new_category_path, class: 'btn btn-primary fa fa-plus' %></u>
+</span> 
+   <table class="table table-striped table-bordered" style='border:1px solid #ccc;width:100%'>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th colspan="3" style='text-align:center'>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody style='text-align:center'>
+    <% @category.each do |category| %>
+      <tr>
+        <td><%= category.id %></td>
+        <td style='text-align:left'><%= category.name %></td>
+        <td><%= link_to ' Show', category, class: 'btn btn-success btn-sm fa fa-eye' %></td>
+        <td><%= link_to ' Edit', edit_category_path(category), class: 'btn btn-primary btn-sm fa fa-pencil-square-o' %></td>
+        <td><%= link_to ' Delete', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm fa fa-trash' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+</div>  

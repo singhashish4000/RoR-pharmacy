@@ -1,0 +1,68 @@
+
+<div style='padding-left:30px'>
+<% if current_user.nil? || current_user && !current_user.is_admin? %>
+      <h3 style='color:#1E61A5;font-weight:bold'><%= @category.name %> Search Results</h3>
+
+      <% if @category.products.exists? %>
+      <div id="" style="overflow:scroll; height:210px">
+          <span style='color:black'>The following drugs fall under the category <b><%= @category.name %></b>:<span>
+          <br>
+          <br>
+          <table class="table table-striped" style='border:1px solid #ccc;width:95%'>
+            <thead style='background-color:#1e61a5;color:white'>
+              <tr>
+                <th>Trade Name</th>
+                <th>Active Ingredient</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @products.each do |product| %>
+                <tr>
+                  <td><%= link_to product.name, product %></td>
+                  <td><%= link_to product.active_ingredient.name %></td>
+                </tr>
+            <% end %>
+            </tbody>
+            </table>
+        </div>    
+      <% else %>
+        <span style='color:red'>No Products in <%= @category.name %> Category.</span> 
+      <% end %>
+        <br>
+        <%= render partial: "layouts/partials/category_search" %>
+    </div>
+
+    <div style='position:relative;bottom:-330px'>
+      <%= render partial: "layouts/partials/footer" %>
+<% elsif current_user && current_user.is_admin %>          
+  <% if @category && @category.products.exists? %>
+  <div id="" style="">
+      <span style='color:black'>The following drugs fall under the category <b><%= @category.name %></b>:<span>
+      <br>
+      <br>
+      <table class="table table-striped" style='border:1px solid #ccc;width:95%'>
+        <thead style='background-color:#1e61a5;color:white'>
+          <tr>
+            <th>Trade Name</th>
+            <th>Active Ingredient</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @products.each do |product| %>
+            <tr>
+              <td><%= link_to product.name, product %></td>
+              <td><%= link_to product.active_ingredient.name %></td>
+            </tr>
+        <% end %>
+        </tbody>
+        </table>
+    </div>    
+  <% else %>
+    <span style='color:red'>No Products in <%= @category.name %> Category.</span> 
+  <% end %>   
+<% end %>
+</div>
+
+
+
+

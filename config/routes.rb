@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   resources :middlewares
   resources :products
+  resources :product_descriptions
   devise_for :users
   root to: 'welcome#index'
 
-  resources :category
+  resources :categories
+  resources :active_ingredients
+  resources :titles
   # get 'drugs' => 'category#index'
   # get 'drugs/:id' => 'category#cat_search'
 

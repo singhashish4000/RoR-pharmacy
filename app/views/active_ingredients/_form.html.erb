@@ -1,0 +1,22 @@
+<%= form_for(@active_ingredient) do |f| %>
+  <% if @active_ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@active_ingredient.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @active_ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="actions form-group">
+    <%= f.submit %>
+  </div>
+<% end %>

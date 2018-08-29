@@ -6,7 +6,7 @@
   </h3>
   <br>
   <h4 style='color:#1E61A5;font-weight:bold'><%= @product.category.name %></h4>
-    <div style='border:1px solid #ccc;height:40px;padding:10px'>
+    <div style='border:1px solid #ccc;height:50px;padding:10px'>
       <b><%= @product.category.name %></b> is the active ingredient of the following trade name medications: 
     </div>
     <table class="table table-bordered" style='border:1px solid #ccc;width:100%'>
@@ -44,7 +44,7 @@
     <tbody>
     <% @product_desc.each do |product_desc|%>
       <tr>
-      <% @middileware = Middleware.where(product_description_id: product_desc)  %>
+      <% @middileware = Middleware.where(product_description_id: product_desc.id)  %>
         <% @span = @middileware.count + 1 %>
         <td rowspan=<%= @span%>><%= product_desc.desc %></td>   
         <tr><% @middileware.each do |m| %>
@@ -58,6 +58,6 @@
       </tbody>
   </table>
  </div> 
- <div style='position:relative;bottom:-135px'>
+ <div style='position:relative;bottom:-625px'>
   <%= render partial: "layouts/partials/footer" %>
 </div>

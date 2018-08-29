@@ -16,6 +16,10 @@
     <%= f.collection_select :product_id, Product.all, :id, :name %>
   </div>
   <div class="field">
+    <%= f.label :product_description_id %><br>
+    <%= f.collection_select :product_description_id, ProductDescription.all, :id, :desc %>
+  </div>
+  <div class="field">
     <%= f.label :quantity %><br>
     <%= f.text_field :quantity %>
   </div>

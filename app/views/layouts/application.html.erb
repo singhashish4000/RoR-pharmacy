@@ -7,40 +7,153 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div style='border:1px solid #1E61A5;width:56.5%;height:1500px;margin:auto;border-radius:30px;margin-top:5px;margin-bottom:10px;background-color:white'>
-    <%= render partial: "layouts/partials/header" %>
-    <div style='background-color:#387FC3;height:12px;'>
-    </div>
-    <div style='background-color:#1E61A5;height:38px;'>
-      <div style='color:#FFB08D;font-weight:bold;padding:7px;margin-left:10px;float:left'>
-        <span >Home</span>
-      </div>
-      <div style='color:#FFB08D;padding:4px;float:right;width:30%'>
-        <input type='text' placeholder='Search Products'>
-        <button type="button" class="btn btn-default btn-sm">Go!</button>
-      </div>
-    </div>
-    <div style='height:1290px'>
-     <div style='width:70%;height:985px;float:left'>
-     <div style='padding:10px'> 
-        <% flash.each do |key, value| %>
-          <div class="alert alert-dismissable alert-info">
-              <button type="button" class="close" data-dismiss="alert">×</button>
-              <% if value.class == Array %>
-                  <% value.each do |message| %>  
-                      <%= message %>
-                      </br>
-                  <% end %>
-              <% else %>
-                  <%= value %>
-              <% end %>
+  <% if current_user.nil? || current_user && !current_user.is_admin? %>
+    <div style='border:1px solid #1E61A5;width:56.5%;height:1500px;margin:auto;border-radius:30px;margin-top:5px;margin-bottom:10px;background-color:white'>
+        <%= render partial: "layouts/partials/header" %>
+        <div style='background-color:#387FC3;height:12px;'>
+        </div>
+        <div style='background-color:#1E61A5;height:38px;'>
+          <div style='color:#FFB08D;font-weight:bold;padding:7px;margin-left:10px;float:left'>
+            <span >Home</span>
           </div>
-        <% end %>
+          <div style='color:#FFB08D;padding:4px;float:right;width:30%'>
+            <input type='text' placeholder='Search Products'>
+            <button type="button" class="btn btn-default btn-sm">Go!</button>
+          </div>
+        </div>
+        <div style='height:1290px'>
+        <div style='width:70%;height:1280px;float:left;overflow-y:scroll;'>
+        <div style='padding:10px'> 
+            <% flash.each do |key, value| %>
+              <div class="alert alert-dismissable alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <% if value.class == Array %>
+                      <% value.each do |message| %>  
+                          <%= message %>
+                          </br>
+                      <% end %>
+                  <% else %>
+                      <%= value %>
+                  <% end %>
+              </div>
+            <% end %>
+          </div>  
+            <%= yield %>
+        </div>
+        <div style='width:30%;height:1287px;border-radius:0px 0px 27px 0px;background-color:#C5F6C0;color:#2465B9;float:left;overflow-y:scroll;'>
+        <%= render partial: "layouts/partials/sidebar" %>
       </div>  
-        <%= yield %>
+  <% elsif current_user && current_user.is_admin %>
+      <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "Admin Dashboard", :root , class: 'navbar-brand'%>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Link1", "/path1"  %></li>
+            <li><%= link_to "Link2", "/path2"  %></li>
+            <li><%= link_to "Link3", "/path3"  %></li>
+          </ul>
+          <ul class='nav navbar-right col-md-4'>
+            <% if current_user %>
+            <li class='col-md-8 user-name' style='margin-top:5px;margin-left:0px;background-color:#ccc'>
+              <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.first_name + " "+current_user.last_name, length: 25)).html_safe,edit_user_registration_path, title: 'Edit Profile' 
+              %>
+            </li>  
+            <li class='col-md-4 logout' style='margin-top:5px'>
+              <%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger',
+                                                                title: 'Logout',method: :delete) %>
+            </li>
+            <% else %>                                                   
+            <li class='col-md-4 pull-right'>PhotoApp
+              <%= link_to('Sign In', new_user_session_path, class: 'btn btn-primary', title: 'Sign In') %>
+            </li>
+            <% end %>  
+          </ul>
+        </div>
+      </div>
     </div>
-    <div style='width:30%;height:1287px;border-radius:0px 0px 27px 0px;background-color:#C5F6C0;color:#2465B9;float:left;'>
-    <%= render partial: "layouts/partials/sidebar" %>
-  </div>  
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+        <%= bootstrap_flash %>
+        <div id="sidebar-collapse" class="col-sm-4 col-lg-3 sidebar" style='background-color:white;padding:20px;border-radius:10px;float:left'>
+        <div class="profile-sidebar">
+          <div class="clear"></div>
+        </div>
+        <div class="divider"></div>
+        <ul class="nav menu">
+          <li class="active" style='margin-bottom: 5px;margin-top:10px;border-bottom:1px solid #ccc'><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+
+          <li style='margin-left: 10px;border-bottom:1px solid #ccc;margin-top:10px;margin-bottom:10px;padding-bottom:10px'>
+            <span class="fa fa-medkit" style='margin-left:5px'>
+               <%= link_to 'Products', :products,style:'margin-left:5px' %>
+            </span>     
+          </li>
+
+          <li style='margin-left: 10px;border-bottom:1px solid #ccc;margin-top:10px;margin-bottom:10px;padding-bottom:10px'>
+            <span class="fa fa-stethoscope" style='margin-left:5px'>
+               <%= link_to 'Product Description', :product_descriptions,style:'margin-left:5px' %>
+            </span>  
+          </li>
+
+          <li style='margin-left: 10px;border-bottom:1px solid #ccc;margin-top:10px;margin-bottom:10px;padding-bottom:10px'>
+            <span class="fa fa-heartbeat" style='margin-left:5px'>
+                <%= link_to 'Middleware', :middlewares,style:'margin-left:5px' %> 
+            </span>     
+          </li>
+
+          <li style='margin-left: 10px;border-bottom:1px solid #ccc;margin-top:10px;margin-bottom:10px;padding-bottom:10px''>
+            <span class="fa fa-arrows" style='margin-left:5px'>
+                <%= link_to 'Category', :categories,style:'margin-left:5px' %> 
+            </span>     
+          </li>
+        
+          <li style='margin-left: 10px;border-bottom:1px solid #ccc;margin-top:10px;margin-bottom:10px;padding-bottom:10px'>
+            <span class="fa fa-exchange" style='margin-left:5px'>
+                <%= link_to 'Active Ingredients', :active_ingredients,style:'margin-left:5px' %> 
+            </span>     
+          </li>          
+
+          <li style='margin-left: 10px;border-bottom:1px solid #ccc;margin-top:10px;margin-bottom:10px;padding-bottom:10px''>
+            <span class="fa fa-user" style='margin-left:5px'>
+                <%= link_to 'Titles', :titles,style:'margin-left:5px' %> 
+            </span>     
+          </li>          
+
+          <li style='margin-bottom: 5px;border-bottom:1px solid #ccc'><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+          
+          <li class="parent " style='margin-bottom: 5px;border-bottom:1px solid #ccc'><a data-toggle="collapse" href="#sub-item-1">
+            <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+            </a>
+            <ul class="children collapse" id="sub-item-1">
+              <li><a class="" href="#">
+                <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+              </a></li>
+              <li><a class="" href="#">
+                <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
+              </a></li>
+              <li><a class="" href="#">
+                <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+              </a></li>
+            </ul>
+          </li>
+          <li style='margin-bottom: 5px;'><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        </ul>
+        </div><!--/.sidebar-->
+        
+        <div class="col-sm-7 col-lg-8" style="height:700px;border:1px solid #ccc;margin-left:30px;background-color:white;padding:20px;border-radius:10px;float:left;overflow:scroll;">
+          <%= yield %>
+        </div>
+      </div><!--/row-->
+
+
+    </div> <!-- /container -->    
+  <% end %>    
 </body>
 </html>
