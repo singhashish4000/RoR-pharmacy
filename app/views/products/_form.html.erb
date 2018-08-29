@@ -11,39 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :web_price %><br>
-    <%= f.text_field :web_price %>
-  </div>
-  <div class="field">
-    <%= f.label :call_price %><br>
-    <%= f.text_field :call_price %>
-  </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :active_ingredient %><br>
-    <%= f.collection_select :active_ingredient_id, ActiveIngredient.all, :id, :name %>
+    <%= f.collection_select :active_ingredient_id, ActiveIngredient.all, :id, :name, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :category_id %><br>
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :product_desc %><br>
-    <%= f.text_field :product_desc %>
-  </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :manufactors_name %><br>
-    <%= f.text_field :manufactors_name %>
+    <%= f.text_field :manufactors_name, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :quantity %><br>
-    <%= f.text_field :quantity %>
-  </div>
-  <div class="actions">
+  <div class="actions form-group">
     <%= f.submit %>
   </div>
 <% end %>

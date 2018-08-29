@@ -69,6 +69,6 @@ class MiddlewaresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def middleware_params
-      params.require(:middleware).permit(:product_id, :quantity, :web_price, :web_price_desc, :phone_price, :phone_price_desc)
+      params.require(:middleware).permit(:product_id, :quantity, :web_price, :web_price_desc, :phone_price, :phone_price_desc, :product_description_id)
     end
 end

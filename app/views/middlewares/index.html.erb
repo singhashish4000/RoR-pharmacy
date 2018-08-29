@@ -1,32 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div style='float:left' ,class='col-md-8'>
+   <h2>All Middlewares</h2>
+</div>
+<span style='float:right;margin-left:5px;font-weight:bold;margin-top:30px'>
+  <u><%= link_to ' New Middleware', new_middleware_path, class: 'btn btn-primary fa fa-plus' %></u>
+</span>  
 
-<h1>Listing Middlewares</h1>
-
-<table>
+<table class="table table-striped table-bordered" style='border:1px solid #ccc;width:100%'>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Product</th>
+      <th>Product Desc</th>
       <th>Quantity</th>
       <th>Web price</th>
       <th>Web price desc</th>
       <th>Phone price</th>
       <th>Phone price desc</th>
-      <th colspan="3"></th>
+      <th colspan="3" style='text-align:center'>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @middlewares.each do |middleware| %>
       <tr>
+        <td><%= middleware.id %></td>
         <td><%= middleware.product.name %></td>
+        <td><%= middleware.product_description_id %></td>
         <td><%= middleware.quantity %></td>
         <td><%= middleware.web_price %></td>
         <td><%= middleware.web_price_desc %></td>
         <td><%= middleware.phone_price %></td>
         <td><%= middleware.phone_price_desc %></td>
-        <td><%= link_to 'Show', middleware %></td>
-        <td><%= link_to 'Edit', edit_middleware_path(middleware) %></td>
-        <td><%= link_to 'Destroy', middleware, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to ' Show', middleware, class: 'btn btn-success btn-sm fa fa-eye' %></td>
+        <td><%= link_to ' Edit', edit_middleware_path(middleware), class: 'btn btn-primary btn-sm fa fa-pencil-square-o' %></td>
+        <td><%= link_to ' Delete', middleware, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm fa fa-trash' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New Middleware', new_middleware_path %>
+

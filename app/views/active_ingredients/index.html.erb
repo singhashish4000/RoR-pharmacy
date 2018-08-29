@@ -1,0 +1,33 @@
+<div style='float:left' ,class='col-md-8'>
+   <h2>All Active Ingredient</h2>
+</div>
+<span style='float:right;margin-left:5px;font-weight:bold;margin-top:30px'>
+  <u><%= link_to ' New Active Ingredient', new_active_ingredient_path, class: 'btn btn-primary fa fa-plus' %></u>
+</span>  
+
+
+<table class="table table-striped table-bordered" style='border:1px solid #ccc;width:95%'>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th colspan="3" style='text-align:center'>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @active_ingredients.each do |active_ingredient| %>
+      <tr>
+        <td><%= active_ingredient.id %></td>
+        <td><%= active_ingredient.name %></td>
+        <td><%= link_to ' Show', active_ingredient, class: 'btn btn-success btn-sm fa fa-eye' %></td>
+        <td><%= link_to ' Edit', edit_active_ingredient_path(active_ingredient), class: 'btn btn-primary btn-sm fa fa-pencil-square-o' %></td>
+        <td><%= link_to ' Delete', active_ingredient, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm fa fa-trash' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

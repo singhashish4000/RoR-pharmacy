@@ -1,0 +1,30 @@
+<%= form_for(@product_description) do |f| %>
+    <% if @product_description.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@product_description.errors.count, "error") %> prohibited this product from being saved:</h2>
+  
+        <ul>
+        <% @product_description.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field form-group">
+      <%= f.label :desc %><br>
+      <%= f.text_field :desc, class: 'form-control' %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :product_id %><br>
+      <%= f.collection_select :product_id, Product.all, :id, :name, class: 'form-control' %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :middleware_id %><br>
+      <%= f.collection_select :middleware_id, Middleware.all, :id, :quantity, class: 'form-control' %>
+    </div>    
+    <div class="actions form-group">
+      <%= f.submit %>
+    </div>
+  <% end %>
+  
